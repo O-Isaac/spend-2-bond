@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spend 2 Bond</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <style>
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        header img {
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        nav {
+            background: var(--pico-color-background);
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid var(--pico-muted-border-color);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin-left: 1rem;
+        }
+
+        table {
+            margin-top: 2rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--pico-muted-color);
+        }
+
+        #clearBtn {
+            display: none;
+            margin-top: 1rem;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>Created by o-isaac</li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header>
+            <img src="sq.webp" alt="Saint Quartz Logo">
+            <h1>Spend 2 Bond</h1>
+            <p>Use your golden apples wisely to reach bond levels and claim your precious Saint Quartz.</p>
+        </header>
+
+        <form id="calcForm">
+            <label>
+                Target points
+                <input type="number" id="objective" placeholder="e.g. 863371" required>
+            </label>
+            <label>
+                Base points per battle
+                <input type="number" id="base" placeholder="e.g. 4748" required>
+            </label>
+            <label>
+                Bonus points per battle
+                <input type="number" id="bonus" placeholder="e.g. 8974" required>
+            </label>
+            <label>
+                AP cost per battle
+                <input type="number" id="costAP" placeholder="e.g. 40" required>
+            </label>
+            <label>
+                Apple recharge (AP)
+                <input type="number" id="recharge" placeholder="e.g. 146" required>
+            </label>
+            <label>
+                Initial AP
+                <input type="number" id="initialAP" placeholder="e.g. 190" required>
+            </label>
+            <button type="submit">Calculate</button>
+            <button type="button" id="clearBtn" class="contrast">Clear Results</button>
+        </form>
+
+        <section id="result">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Battles Needed</th>
+                        <th>Total AP Required</th>
+                        <th>Golden Apples Needed</th>
+                        <th>Leftover AP</th>
+                    </tr>
+                </thead>
+                <tbody id="resultBody">
+                    <!-- Results will appear here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        Powered by <a href="https://picocss.com/" target="_blank">Pico.css</a>
+    </footer>
+
+    <script>
+        function calculateApples(objective, base, bonus, costAP, recharge, initialAP) {
+            const pointsPerBattle = base + bonus;
+            const battles = Math.ceil(objective / pointsPerBattle);
+            const totalAP = battles * costAP;
+            let missingAP = totalAP - initialAP;
+            if (missingAP < 0) missingAP = 0;
+            const apples = Math.ceil(missingAP / recharge);
+            const leftoverAP = (initialAP + apples * recharge) - totalAP;
+            return { battles, totalAP, apples, leftoverAP };
+        }
+
+        document.getElementById("calcForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const objective = parseInt(document.getElementById("objective").value);
+            const base = parseInt(document.getElementById("base").value);
+            const bonus = parseInt(document.getElementById("bonus").value);
+            const costAP = parseInt(document.getElementById("costAP").value);
+            const recharge = parseInt(document.getElementById("recharge").value);
+            const initialAP = parseInt(document.getElementById("initialAP").value);
+
+            const r = calculateApples(objective, base, bonus, costAP, recharge, initialAP);
+
+            const tbody = document.getElementById("resultBody");
+            tbody.innerHTML = `
+        <tr><td>${r.battles.toLocaleString()}</td><td>${r.totalAP.toLocaleString()}</td><td>${r.apples}</td><td>${r.leftoverAP}</td></tr>
+      `;
+
+            document.getElementById("clearBtn").style.display = "block";
+        });
+
+        document.getElementById("clearBtn").addEventListener("click", function () {
+            document.getElementById("calcForm").reset();
+            document.getElementById("resultBody").innerHTML = "";
+            document.getElementById("clearBtn").style.display = "none";
+        });
+    </script>
+</body>
+
+</html>
