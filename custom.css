@@ -1,0 +1,73 @@
+header {
+  text-align: center;
+  margin-block: 2rem;
+}
+
+header img {
+  max-width: 120px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+nav {
+  background: var(--pico-color-background);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--pico-muted-border-color);
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin-left: 1rem;
+}
+
+table {
+  margin-top: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--pico-muted-color);
+}
+
+#clearBtn {
+  display: none;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.logo-wrapper {
+  position: relative;
+  display: inline-block; /* o block según necesites */
+}
+
+.logo-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0rem;
+  border-radius: 10000px;
+  background: linear-gradient(
+    0deg,
+    transparent 33%,
+    rgb(74.2, 20.8, 68.4),
+    rgb(58.5, 32.5, 85.75),
+    rgb(45, 36.6, 100.9),
+    rgb(26.4, 42.9, 106.7)
+  );
+  filter: blur(1.5rem);
+  z-index: -1;
+}
+.logo {
+  position: relative;
+  z-index: 1;
+}

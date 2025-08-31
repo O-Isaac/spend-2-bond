@@ -6,67 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spend 2 Bond</title>
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-    <style>
-        header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        header img {
-            max-width: 120px;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-
-        nav {
-            background: var(--pico-color-background);
-            padding: 0.5rem 1rem;
-            border-bottom: 1px solid var(--pico-muted-border-color);
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: flex-end;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav li {
-            margin-left: 1rem;
-        }
-
-        table {
-            margin-top: 2rem;
-            width: 100%;
-            text-align: center;
-        }
-
-        footer {
-            margin-top: 3rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--pico-muted-color);
-        }
-
-        #clearBtn {
-            display: none;
-            margin-top: 1rem;
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="custom.css">
 </head>
 
 <body>
     <nav>
         <ul>
-            <li>Created by o-isaac</li>
+            <li>Created by <a href="https://github.com/O-isaac">O-isaac</a></li>
         </ul>
     </nav>
 
     <main class="container">
         <header>
-            <img src="sq.webp" alt="Saint Quartz Logo">
+            <div class="logo-wrapper">
+                <img class="logo" height="360" width="360" src="sq.webp" alt="Saint Quartz Logo">
+            </div>
             <h1>Spend 2 Bond</h1>
             <p>Use your golden apples wisely to reach bond levels and claim your precious Saint Quartz.</p>
         </header>
@@ -135,6 +89,7 @@
 
         document.getElementById("calcForm").addEventListener("submit", function (e) {
             e.preventDefault();
+
             const objective = parseInt(document.getElementById("objective").value);
             const base = parseInt(document.getElementById("base").value);
             const bonus = parseInt(document.getElementById("bonus").value);
