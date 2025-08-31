@@ -5,22 +5,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spend 2 Bond</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Calculate how many battles, AP, and Golden Apples you need to reach Bond levels and claim your Saint Quartz in FGO.">
+    <meta name="keywords" content="FGO, Fate Grand Order, Saint Quartz, Bond, Golden Apples, calculator, AP, battles">
+    <meta name="author" content="o-isaac">
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Spend 2 Bond - Saint Quartz Calculator">
+    <meta property="og:description"
+        content="Calculate how many battles, AP, and Golden Apples you need to reach Bond levels and claim your Saint Quartz in FGO.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="sq.webp">
+    <meta property="og:url" content="https://your-website.com">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Spend 2 Bond - Saint Quartz Calculator">
+    <meta name="twitter:description"
+        content="Calculate how many battles, AP, and Golden Apples you need to reach Bond levels and claim your Saint Quartz in FGO.">
+    <meta name="twitter:image" content="sq.webp">
+
+
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-    <link rel="stylesheet" href="custom.css">
+    <style>
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        header img {
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        nav {
+            background: var(--pico-color-background);
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid var(--pico-muted-border-color);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin-left: 1rem;
+        }
+
+        table {
+            margin-top: 2rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--pico-muted-color);
+        }
+
+        #clearBtn {
+            display: none;
+            margin-top: 1rem;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
     <nav>
         <ul>
-            <li>Created by <a href="https://github.com/O-isaac">O-isaac</a></li>
+            <li>Created by o-isaac</li>
         </ul>
     </nav>
 
     <main class="container">
         <header>
-            <div class="logo-wrapper">
-                <img class="logo" height="360" width="360" src="sq.webp" alt="Saint Quartz Logo">
-            </div>
+            <img src="sq.webp" alt="Saint Quartz Logo">
             <h1>Spend 2 Bond</h1>
             <p>Use your golden apples wisely to reach bond levels and claim your precious Saint Quartz.</p>
         </header>
@@ -89,7 +158,6 @@
 
         document.getElementById("calcForm").addEventListener("submit", function (e) {
             e.preventDefault();
-
             const objective = parseInt(document.getElementById("objective").value);
             const base = parseInt(document.getElementById("base").value);
             const bonus = parseInt(document.getElementById("bonus").value);
@@ -114,5 +182,6 @@
         });
     </script>
 </body>
+
 
 </html>
